@@ -1,0 +1,13 @@
+[core]
+	editor = "vim"
+[color]
+	ui = true
+[alias]
+	l = log --oneline
+	co = checkout
+	ci = commit
+	st = status --short
+	br = branch -v
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p

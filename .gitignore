@@ -9,6 +9,7 @@
 # Dotfiles
 !/.bashrc
 !/.inputrc
+!/.gitconfig
 
 # Ficheros para la terminal
 # TODO: Arreglar esto (?)
