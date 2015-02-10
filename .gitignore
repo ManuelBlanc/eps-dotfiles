@@ -1,9 +1,16 @@
-# En principio ignoramos todo
-*
+# En principio ignoramos todos los ficheros de la raiz
+/*
 
-# Cosas que si queremos:
+# Git
 !/README.md
 !/LICENSE
 !/.gitignore
+
+# Dotfiles
 !/.bashrc
 !/.inputrc
+
+# Ficheros para la terminal
+# TODO: Arreglar esto (?)
+!/.gconf/apps/gnome-terminal/*
+!/.config/gnome-panel/launchers/gnome-terminal.desktop
