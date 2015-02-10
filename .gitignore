@@ -1,0 +1,9 @@
+# En principio ignoramos todo
+*
+
+# Cosas que si queremos:
+!/README.md
+!/LICENSE
+!/.gitignore
+!/.bashrc
+!/.inputrc
