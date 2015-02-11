@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
+# Desactivar '!'
+set +H
+
 # En ingles
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
+
+# Configuracion miscelanea
+export EDITOR=vim
+export LESS=-Ri
 
 # Incluye las cosas que esten en la UnidadH/
 UnidadH="$HOME/UnidadH"
@@ -16,7 +23,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Quitamos la sugerencia de instalar cosas
+# Quitamos la sugerencias de instalacion
 unset -f command_not_found_handle
 
 # Listados
@@ -33,13 +40,50 @@ none='\[\e[0m\]'
 PS1="${cyan}\u@\h:\w\$${none} "
 
 # Navegacion
+alias back='cd $OLDPWD'
 alias ..='cd ..'
+alias ...='cd ../..'
 cd() {
-	if [ -f "$1" ]; then
-		command cd $(dirname "$1")
-		return $?
-	fi
-	command cd "$@"
+    if [ -f "$1" ]; then
+        command cd $(dirname "$1")
+        return $?
+    fi
+    command cd "$@"
+}
+
+# Otros alias y funciones utiles (TODO: Quiza moverlo a .bash_aliases?)
+alias mkdirp='mkdir -p'
+alias bc='bc -l'
+
+alias duh='du -h'
+alias duhd='du -hd1'
+
+ff() {
+    DIR="$1"
+    shift
+    find "$DIR" -depth 1 "$@"
+}
+
+# Easy extract (no soy el autor, fuente desconocida)
+extract () {
+    if [ -f $1 ]; then
+        case $1 in
+                *.tar.bz2)  tar xvjf $1                                 ;;
+                *.tar.gz)   tar xvzf $1                                 ;;
+                *.bz2)      bunzip2 $1                                  ;;
+                *.rar)      rar x $1                                    ;;
+                *.gz)       gunzip $1                                   ;;
+                *.tar)      tar xvf $1                                  ;;
+                *.tbz2)     tar xvjf $1                                 ;;
+                *.tgz)      tar xvzf $1                                 ;;
+                *.zip)      unzip $1                                    ;;
+                *.Z)        uncompress $1                               ;;
+                *.7z)       7z x $1                                     ;;
+                *)          echo "don't know how to extract '$1'..."    ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
 }
 
 # TODO: eps-install
