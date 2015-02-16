@@ -64,7 +64,7 @@ alias duh='du -h'
 alias duhd='du -hd1'
 
 ff() {
-    DIR="$1"
+    local DIR="$1"
     shift
     find "$DIR" -depth 1 "$@"
 }
@@ -90,3 +90,11 @@ extract () {
         echo "'$1' is not a valid file!"
     fi
 }
+
+swap() {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
