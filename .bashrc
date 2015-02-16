@@ -18,9 +18,14 @@ export MANPATH="$UnidadH/share/man:$MANPATH"
 export LIBRARY_PATH="$UnidadH/lib:$LIBRARY_PATH"
 export CPATH="$UnidadH/include:$CPATH"
 
-# Autocompletar (si esta instalado)
+# Autocompletar global
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+fi
+
+# Autocompletar en la UnidadH
+if [ -f $UnidadH/etc/bash_completion ]; then
+    source $UnidadH/etc/bash_completion
 fi
 
 # Quitamos la sugerencias de instalacion
@@ -40,7 +45,7 @@ none='\[\e[0m\]'
 PS1="${cyan}\u@\h:\w\$${none} "
 
 # Navegacion
-alias back='cd $OLDPWD'
+alias back='cd "$OLDPWD"'
 alias ..='cd ..'
 alias ...='cd ../..'
 cd() {
@@ -51,7 +56,7 @@ cd() {
     command cd "$@"
 }
 
-# Otros alias y funciones utiles (TODO: Quiza moverlo a .bash_aliases?)
+# Otros alias y funciones utiles
 alias mkdirp='mkdir -p'
 alias bc='bc -l'
 
@@ -85,7 +90,3 @@ extract () {
         echo "'$1' is not a valid file!"
     fi
 }
-
-# TODO: eps-install
-# apt-cache depends gcc
-# apt-cache pkgnames

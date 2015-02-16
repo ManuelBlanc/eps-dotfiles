@@ -2,14 +2,15 @@
 /*
 
 # Git
-!/README.md
-!/LICENSE
 !/.gitignore
+!/LICENSE
+!/README.md
 
 # Dotfiles
 !/.bashrc
-!/.inputrc
 !/.gitconfig
+!/.inputrc
+!/.vimrc
 
 # Ficheros para la terminal
 # TODO: Arreglar esto (?)

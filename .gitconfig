@@ -1,13 +1,42 @@
 [core]
-	editor = "vim"
+	editor = "vim" # subl -w
+	excludesfile = $HOME/.config/git/ignore
 [color]
 	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[color "status"]
+	untracked = blue
+[push]
+	default = current
+[format]
+	#pretty = %C(yellow)%h%Creset %C(blue)%<(12,trunc)%ar%Creset %Cgreen%<(8,trunc)%an%Creset - %<(80,trunc)%s
 [alias]
+	# Log
 	l = log --oneline
-	co = checkout
-	ci = commit
-	st = status --short
-	br = branch -v
+	ll = log --date=short --pretty=format:'%C(blue)%ad%Creset %C(yellow)%h%Creset %<(80,trunc)%s'
+	lll = log --all --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'
+	fl = log --stat --oneline
+	fll = log -p --oneline
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	last = log -1 --pretty=fuller --stat
+	# Rest
+	br = branch -vv
+	bra = branch -vva
+	ci = commit
+	cp = cherry-pick
+	co = checkout
+	cob = checkout -b
+	df = diff
+	put = push --follow-tags
+	re = remote -v
+	rb = rebase -i
+	st = status -sb
+	# Util
+	lsu = ls-files --others --exclude-standard
+	check = diff --check
 	type = cat-file -t
 	dump = cat-file -p
+	#incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
+	#outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
