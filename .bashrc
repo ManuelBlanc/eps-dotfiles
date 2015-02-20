@@ -20,7 +20,7 @@ export CPATH="$UnidadH/include:$CPATH"
 
 # Autocompletar global
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 
 # Autocompletar en la UnidadH
@@ -37,12 +37,7 @@ alias l='ls -Fh --color'
 alias ll='l -la'
 
 # Prompt mas interesante
-bold='\[\e[1m\]'
-rojo='\[\e[31m\]'
-verde='\[\e[32m\]'
-cyan='\[\e[36m\]'
-none='\[\e[0m\]'
-PS1="${cyan}\u@\h:\w\$${none} "
+source .bash_prompt
 
 # Navegacion
 alias back='cd "$OLDPWD"'

@@ -8,9 +8,13 @@
 
 # Dotfiles
 !/.bashrc
+!/.bash_prompt
 !/.gitconfig
 !/.inputrc
 !/.vimrc
+
+# Ejecutables
+!/.eps-bin
 
 # Ficheros para la terminal
 # TODO: Arreglar esto (?)

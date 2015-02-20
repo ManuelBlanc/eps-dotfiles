@@ -1,0 +1,68 @@
+# Colors (protected for prompt)
+BOLD="\[$(tput bold)\]"
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
+YELLOW="\[$(tput setaf 3)\]"
+BLUE="\[$(tput setaf 4)\]"
+MAGENTA="\[$(tput setaf 5)\]"
+CYAN="\[$(tput setaf 6)\]"
+WHITE="\[$(tput setaf 7)\]"
+BLACK="\[$(tput setaf 8)\]"
+NOCOLOR=$(tput sgr0)
+
+# Localizacion del __git_ps1
+source /usr/share/git/completion/git-prompt.sh
+
+# Source:: https://github.com/jondavidjohn/dotfiles/
+prompt_git_branch() {
+
+	branch=`__git_ps1 "%s"`
+
+	if [ `tput cols` -lt 110 ]; then
+		case $branch in
+			feature)	branch='feat'	;;
+			hotfix) 	branch='hot' 	;;
+			release)	branch='rel' 	;;
+			develop)	branch='dev' 	;;
+			master) 	branch='mst' 	;;
+			*)      	:            	;;
+		esac
+	fi
+
+	if [ -n "$branch" ]; then
+		if git diff --quiet 2>/dev/null >&2; then
+			branch="${GREEN}$branch"
+		else
+			branch="${RED}$branch"
+		fi
+		echo "($branch${NOCOLOR}) "
+	fi
+}
+
+prompt_remote_state() {
+	remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
+	if [ -n "$remote_state" ]; then
+		out="${BLUE}[${NOCOLOR}"
+
+		if [[ "$remote_state" == *ahead* ]] && [[ "$remote_state" == *behind* ]]; then
+			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
+			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
+			out="$out${RED}$behind_num${NOCOLOR},${GREEN}$ahead_num${NOCOLOR}"
+		elif [[ "$remote_state" == *ahead* ]]; then
+			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
+			out="$out${GREEN}$ahead_num${NOCOLOR}"
+		elif [[ "$remote_state" == *behind* ]]; then
+			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
+			out="$out${RED}$behind_num${NOCOLOR}"
+		fi
+
+		out="$out${BLUE}]${NOCOLOR}"
+		echo "$out "
+	fi
+}
+
+#PS1="${t_cyan}\u@\h:\w\$${t_none} "
+prompt() {
+	PS1="${CYAN}\u@\h:\W${NOCOLOR} $(prompt_git_branch)${CYAN}${BOLD}\$${NOCOLOR} "
+}
+if [ "$TERM" != 'dumb' ]; then PROMPT_COMMAND="prompt; $PROMPT_COMMAND"; fi
