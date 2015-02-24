@@ -1,13 +1,20 @@
 
-# eps-dotfiles
+# eps-dotfiles #
 
-Mi configuración para los laboratorios de la EPS.
-De momento tiene:
-* `.bashrc` - Unos pocos aliases y mi colorización de `ls`.
-* `.inputrc` - Case insensitive de bash!
-* `.gitconfig` - Un par de aliases
+#### .bashrc ####
+* Pone el sistema en ingles
+* Desactiva el `!` en la terminal
+* Permite hacer `cd` a ficheros
+* Añade la funcion `extract` que extrae bastantes tipos de fichero automaticamente.
+* Define aliases incluyendo `l`, `ll`, `..`, `...`, `mkdirp`, `duh`, etc.
 
-TODO: Escribir este readme!!
+#### .bash\_prompt ####
+Coloriza PS1, y muestra la rama de git
 
-#### Licencia
-GPLv3 (vease LICENSE)
+#### .gitconfig ####
+
+#### .vimrc ####
+
+## Licencia ##
+GPLv3 (vease el fichero [LICENSE](./LICENSE))
+

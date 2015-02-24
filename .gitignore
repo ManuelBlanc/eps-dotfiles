@@ -13,8 +13,8 @@
 !/.inputrc
 !/.vimrc
 
-# Ejecutables
-!/.eps-bin
+# Directorio con ficheros adicionales
+!/.eps-dotfiles-extra
 
 # Ficheros para la terminal
 # TODO: Arreglar esto (?)

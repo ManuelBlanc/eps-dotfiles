@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -eu # Modo mas cuerdo
+
+echo2() { >&2 echo "$@"; }
+abort() { echo2 "error: $1"; exit 1; }
+
+SUBLIME_URL='http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3065_x32.tar.bz2'
+PREFIX="$HOME/UnidadH"
+
+# Instalador si no esta instalado
+if [ ! -d "$PREFIX/sublime_text" ]; then
+
+	echo "Sublime Text 3 va a ser instalado en $PREFIX"
+
+	# Comprobar que esta montado el destino y se puede escribir
+	if [ ! -d "$PREFIX" -o ! -w "$PREFIX" ]
+	then abort "no hay permiso de escritura en el directorio"
+	fi
+
+	# Comprobar que no esta instalado
+	if [ -e "$PREFIX/sublime_text" ]
+	then abort "ya esta instalado en ese directorio"
+	fi
+
+	# Confirmar instalacion
+	read -p 'Estas seguro de que quieres continuar? [S/n]' -n 1 -r
+	echo # Nueva linea
+	if [[ ! $REPLY =~ ^[YySs]$ ]]; then abort 'Instalacion abortada.'; fi
+
+	local TMPDIR=`mktemp -d st3_XXXXXXXXX`
+	[ -z $TMPDIR ] && abort 'No se pudo crear una carpeta temporal'
+
+	# Instalacion
+	curl "$SUBLIME_URL" > $TMPDIR/st3.tar.bz2
+	tar -C $TMPDIR -xjvf $TMPDIR/st3.tar.bz2
+	mkdir $TMPDIR/sublime_text_3/Data
+
+	# Preparamos un .desktop basado en el que viene por defecto
+	sed -i "s:/opt/:$PREFIX/:" $TMPDIR/sublime_text_3/sublime_text.desktop
+	chmod u+x $TMPDIR/sublime_text_3/sublime_text.desktop
+
+	mv "$TMPDIR/sublime_text_3" "$PREFIX/sublime_text"
+	rm -rf $TMPDIR
+	echo2 'Instalado con exito!'
+fi
+
+# Copiamos el .desktop si ya esta instalado pero no ha sido copiado
+if [ ! -f ~/.local/share/applications/sublime_text.desktop ]; then
+	cp $PREFIX/sublime_text/sublime_text.desktop ~/.local/share/applications/sublime_text.desktop
+	echo '[Default Applications]' > ~/.local/share/applications/mimeapps.list
+	grep 'gedit' '/etc/gnome/defaults.list' | sed 's/gedit/sublime_text/g' >> ~/.local/share/applications/mimeapps.list
+	echo2 'Primera ejecuccion, generado sublime_text.desktop y mimeapps.list'
+fi
+
+# Abrimos ST normalmente con los argumentos proporcionados
+$PREFIX/sublime_text/sublime_text "$@"
+
+

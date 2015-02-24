@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/263892/change-the-background-color-in-gnome-terminal-through-a-command
+
+http://askubuntu.com/questions/558280/changing-colour-of-text-and-background-of-terminal
+
+http://unix.stackexchange.com/questions/133914/set-gnome-terminal-background-text-color-from-bash-script

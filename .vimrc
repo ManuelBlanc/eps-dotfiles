@@ -41,12 +41,21 @@ set list listchars=tab:\ \ ,trail:·,extends:#,nbsp:. ",eol:$ " Marca la indenta
 nnoremap <C-L> :nohl<CR><C-L>
 " Comportamiento consistente de 'Y'
 nnoremap Y y$
-" Cambiar orden de lineas con alt+j/k
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
+" Cambiar orden de lineas con ctrl+j/k
+nnoremap <C-j>      :m .+1<CR>==
+nnoremap <C-k>      :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+vnoremap <C-j>      :m '>+1<CR>gv=gv
+vnoremap <C-k>      :m '<-2<CR>gv=gv
 " Insertar newlines
 noremap <CR> o<Esc>
+" Cambio de buffer
+nnoremap - :bn<CR>
+" Pestañas
+nnoremap <C-S-tab>      :tabprevious<CR>
+nnoremap <C-tab>        :tabnext<CR>
+nnoremap <C-t>          :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>

@@ -58,6 +58,10 @@ alias bc='bc -l'
 alias duh='du -h'
 alias duhd='du -hd1'
 
+alias dupes="$HOME/.eps-dotfiles-extra/dupes"
+alias copydoc="$HOME/.eps-dotfiles-extra/copydoc"
+alias subl="$HOME/.eps-dotfiles-extra/subl"
+
 ff() {
     local DIR="$1"
     shift
