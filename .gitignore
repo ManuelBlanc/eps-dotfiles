@@ -15,8 +15,3 @@
 
 # Directorio con ficheros adicionales
 !/.eps-dotfiles-extra
-
-# Ficheros para la terminal
-# TODO: Arreglar esto (?)
-!/.gconf/apps/gnome-terminal/*
-!/.config/gnome-panel/launchers/gnome-terminal.desktop
