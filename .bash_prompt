@@ -8,10 +8,10 @@ MAGENTA="\[$(tput setaf 5)\]"
 CYAN="\[$(tput setaf 6)\]"
 WHITE="\[$(tput setaf 7)\]"
 BLACK="\[$(tput setaf 8)\]"
-NOCOLOR=$(tput sgr0)
+NOCOLOR="\[$(tput sgr0)\]"
 
 # Localizacion del __git_ps1
-source /usr/share/git/completion/git-prompt.sh
+source ~/.eps-dotfiles-extra/git-prompt.sh
 
 # Source:: https://github.com/jondavidjohn/dotfiles/
 prompt_git_branch() {
