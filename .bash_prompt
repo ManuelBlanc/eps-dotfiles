@@ -62,7 +62,8 @@ prompt_remote_state() {
 }
 
 #PS1="${t_cyan}\u@\h:\w\$${t_none} "
+MY_IP=$(hostname -I | cut --delimiter=' ' -f1)
 prompt() {
-	PS1="${CYAN}\u@\h:\W${NOCOLOR} $(prompt_git_branch)${CYAN}${BOLD}\$${NOCOLOR} "
+	PS1="${CYAN}\u@$MY_IP:\W${NOCOLOR} $(prompt_git_branch)${CYAN}${BOLD}\$${NOCOLOR} "
 }
 if [ "$TERM" != 'dumb' ]; then PROMPT_COMMAND="prompt; $PROMPT_COMMAND"; fi
