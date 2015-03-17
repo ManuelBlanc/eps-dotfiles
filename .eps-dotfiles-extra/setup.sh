@@ -25,10 +25,12 @@ gconftool-2 --set '/apps/gnome-terminal/profiles/Default/visible_name'          
 gconftool-2 --set '/apps/gnome-terminal/profiles/Default/bold_color'             	--type string '#000000000000'
 gconftool-2 --set '/apps/gnome-terminal/profiles/Default/foreground_color'       	--type string '#F3F2F3F2F3F2'
 
->&2 echo 'Traido ficheros del repositorio y cambiado la configuracion de la terminal' 
+>&2 echo 'Traido ficheros del repositorio y cambiado la configuracion de la terminal'
 >&2 echo 'Es posible que sea necesario abrir una terminal nueva para que los cambios'
->&2 echo 'entren en efecto.' 
+>&2 echo 'entren en efecto.'
 
-# Intentamos ejecutar el .bashrc
-. .bashrc
+# Ejecutamos el .inputrc
+bind -f ~/.inputrc
+# Ejecutatamos el .bashrc
+. ~/.bashrc
 
