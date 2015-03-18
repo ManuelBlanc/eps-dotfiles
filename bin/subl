@@ -10,6 +10,7 @@ if [ -x "$EXE" ]; then
 	$EXE "$@"
 	exit $?
 fi
+echo >&2 "No se encontro sublime_text en $EXE"
 
 # URL del paquete para que sea facil cambiarlo
 SUBLIME_URL='http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3059_x32.tar.bz2'
@@ -27,7 +28,7 @@ CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 
 # Utilidades
-echo2() { >&2 echo "$@";                                            	}
+echo2() {   echo "$@";                                            	}
 info()  { echo2 "$GREEN==> $NORMAL$@$NORMAL";                       	}
 infoB() { echo2 "$GREEN==> $NORMAL$BOLD$@$NORMAL";                  	}
 error() { echo2 "$MAGENTA==> $NORMAL${BOLD}error: $NORMAL$@$NORMAL";	}
@@ -94,7 +95,7 @@ echo '[Default Applications]' > ~/.local/share/applications/mimeapps.list
 grep 'gedit' '/etc/gnome/defaults.list' | sed 's/gedit/sublime_text/g' >> ~/.local/share/applications/mimeapps.list
 
 EOF
-chmod u+x sublime_text_3/CONFIGURAR.sh 
+chmod u+x sublime_text_3/CONFIGURAR.sh
 
 echo2; infoB 'Terminado, instalacion con exito!'
 

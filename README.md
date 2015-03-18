@@ -3,14 +3,14 @@
 
 Instalacion rapida (**ATENCION:** pipear `curl` a `bash` es **peligroso**, ejecutar bajo tu propia responsabilidad):
 
-	. <(curl -fsSL https://raw.githubusercontent.com/ManuelBlanc/eps-dotfiles/master/.eps-dotfiles-extra/setup.sh)
+	. <(curl -fsSL https://raw.githubusercontent.com/ManuelBlanc/eps-dotfiles/master/setup.sh)
 
-#### .bashrc ####
+#### Caracteristicas ####
+* Auto instalador de Sublime Text 3
 * Pone el sistema en ingles
-* Desactiva el `!` en la terminal
+* Define unos cuantos aliases (bash & git)
+* Coloriza git, y añade informacion al prompt
 * Permite hacer `cd` a ficheros
-* Añade la funcion `extract` que extrae bastantes tipos de fichero automaticamente.
-* Define aliases incluyendo `l`, `ll`, `..`, `...`, `mkdirp`, `duh`, etc.
 
 ## Licencia ##
 GPLv3 (vease el fichero [LICENSE](./LICENSE))

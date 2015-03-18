@@ -13,7 +13,7 @@ export LESS=-Ri
 
 # Incluye las cosas que esten en la UnidadH/
 UnidadH="$HOME/UnidadH"
-export PATH="$UnidadH/bin:$PATH"
+export PATH="$UnidadH/bin:$UnidadH/eps-dotfiles/bin:$PATH"
 export MANPATH="$UnidadH/share/man:$MANPATH"
 export LIBRARY_PATH="$UnidadH/lib:$LIBRARY_PATH"
 export CPATH="$UnidadH/include:$CPATH"
@@ -58,10 +58,6 @@ alias bc='bc -l'
 alias duh='du -h'
 alias duhd='du -hd1'
 
-alias dupes="$HOME/.eps-dotfiles-extra/dupes"
-alias copydoc="$HOME/.eps-dotfiles-extra/copydoc"
-alias subl="$HOME/.eps-dotfiles-extra/subl"
-
 ff() {
     local DIR="$1"
     shift
@@ -97,12 +93,12 @@ swap() {
     mv $TMPFILE "$2"
 }
 
-
-tput setaf 3
-echo ' ▄▄▄ . ▄▄▄·.▄▄ ·         ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · '
-echo ' ▀▄.▀·▐█ ▄█▐█ ▀.         ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. '
-echo ' ▐▀▀▪▄ ██▀·▄▀▀▀█▄        ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄'
-echo ' ▐█▄▄▌▐█▪·•▐█▄▪▐█        ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█'
-echo '  ▀▀▀ .▀    ▀▀▀▀         ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ '
+echo '$(tput setaf 4) ▄▄▄ . ▄▄▄·.▄▄ ·   $(tput setaf 4) ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · '
+echo '$(tput setaf 4) ▀▄.▀·▐█ ▄█▐█ ▀.   $(tput setaf 4) ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. '
+echo '$(tput setaf 4) ▐▀▀▪▄ ██▀·▄▀▀▀█▄  $(tput setaf 4) ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄'
+echo '$(tput setaf 4) ▐█▄▄▌▐█▪·•▐█▄▪▐█  $(tput setaf 4) ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█'
+echo '$(tput setaf 4)  ▀▀▀ .▀    ▀▀▀▀   $(tput setaf 4) ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ '
 tput sgr0
+echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
+echo ''
 
