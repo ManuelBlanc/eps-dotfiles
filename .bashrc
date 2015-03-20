@@ -93,11 +93,11 @@ swap() {
     mv $TMPFILE "$2"
 }
 
-echo '$(tput setaf 4) ▄▄▄ . ▄▄▄·.▄▄ ·   $(tput setaf 4) ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · '
-echo '$(tput setaf 4) ▀▄.▀·▐█ ▄█▐█ ▀.   $(tput setaf 4) ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. '
-echo '$(tput setaf 4) ▐▀▀▪▄ ██▀·▄▀▀▀█▄  $(tput setaf 4) ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄'
-echo '$(tput setaf 4) ▐█▄▄▌▐█▪·•▐█▄▪▐█  $(tput setaf 4) ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█'
-echo '$(tput setaf 4)  ▀▀▀ .▀    ▀▀▀▀   $(tput setaf 4) ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ '
+echo "$(tput setaf 4) ▄▄▄ . ▄▄▄·.▄▄ ·   $(tput setaf 4) ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
+echo "$(tput setaf 4) ▀▄.▀·▐█ ▄█▐█ ▀.   $(tput setaf 4) ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
+echo "$(tput setaf 4) ▐▀▀▪▄ ██▀·▄▀▀▀█▄  $(tput setaf 4) ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
+echo "$(tput setaf 4) ▐█▄▄▌▐█▪·•▐█▄▪▐█  $(tput setaf 4) ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
+echo "$(tput setaf 4)  ▀▀▀ .▀    ▀▀▀▀   $(tput setaf 4) ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
 tput sgr0
 echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
 echo ''

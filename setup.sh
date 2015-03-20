@@ -30,21 +30,13 @@ infoB "======================================================================"
 infoB " eps-dotfiles -- instalacion/reconfiguracion"
 infoB "======================================================================"
 
-PREFIX="~/UnidadH"
+PREFIX="$HOME/UnidadH"
 GITREPO="https://github.com/ManuelBlanc/eps-dotfiles.git"
 # Preparacion
-test -d "$UNIDADH" || abort "La ~/UnidadH/ no esta disponible"
-cd "$UNIDADH"
+test -d "$PREFIX" || abort "La ~/UnidadH/ no esta disponible"
+cd "$PREFIX"
 
-## Esto es puro postureo
-info "Buscando una instalacion ya existente ..."
-for i in {1..2}; do
-	sleep 0.25; echo -en "\r[.  ]"
-	sleep 0.25; echo -en "\r[ . ]"
-	sleep 0.25; echo -en "\r[  .]"
-	sleep 0.25; echo -en "\r[ . ]"
-done
-echo -en "\r"
+infoB "Buscando una instalacion ya existente ..."
 
 if [ -d "$PREFIX/eps-dotfiles" ]; then
 	info "Encontrada en $PREFIX/eps-dotfiles"
@@ -54,16 +46,11 @@ else
 
 	infoB "Clonando el repositorio"
 	git clone -v "$GITREPO" "$PREFIX/eps-dotfiles"
-
-	infoB "Inicializando gentoo:prefix"
-	export EPREFIX="$PREFIX/eps-dotfiles"
-	curl -fsSLo- http://rsync.prefix.bitzolder.nl/scripts/bootstrap-prefix.sh
-	test "$(shasum bootstrap-prefix.sh)" = '91a6d87dd873c7d61477fee8c473e14f4458baac' || abort 'El SHA-1 no es el esperado'
 fi
 
 infoB "Enlazando los ficheros de configuracion"
 ## Enlazado manual
-link_file() { ln -s "$EPSPREFIX/$1" "~/$1"; }
+link_file() { ln -fs "$PREFIX/eps-dotfiles/$1" "$HOME/$1"; }
 # Git
 mkdir -p ~/.config/git
 link_file .config/git/ignore
