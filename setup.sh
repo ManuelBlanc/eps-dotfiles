@@ -89,5 +89,6 @@ gconftool-2 --set '/apps/gnome-terminal/profiles/Default/foreground_color'      
 ## Recargamos la configuracion
 infoB "Recargando la configuracion"
 set +eu
+cd ~
 bind -f ~/.inputrc
 . ~/.bashrc
