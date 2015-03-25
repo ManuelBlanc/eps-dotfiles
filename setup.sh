@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -eu # Modo sano
+
+{ # Proteccion ejecuccion parcial
 
 # Colorines
 NORMAL=$(tput sgr0)
@@ -92,3 +93,5 @@ set +eu
 cd ~
 bind -f ~/.inputrc
 . ~/.bashrc
+
+}
