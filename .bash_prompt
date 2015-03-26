@@ -11,7 +11,7 @@ BLACK="\[$(tput setaf 8)\]"
 NOCOLOR="\[$(tput sgr0)\]"
 
 # Localizacion del __git_ps1
-source ~/.eps-dotfiles-extra/git-prompt.sh
+source "$(dirname $(test -L "$BASH_SOURCE" && readlink "$BASH_SOURCE" || echo "$BASH_SOURCE"))/git-prompt.sh"
 
 # Source:: https://github.com/jondavidjohn/dotfiles/
 prompt_git_branch() {
@@ -63,7 +63,7 @@ prompt_remote_state() {
 
 #PS1="${t_cyan}\u@\h:\w\$${t_none} "
 MY_IP=$(hostname -I | cut --delimiter=' ' -f1)
-prompt() {
+_set_ps1() {
 	PS1="${CYAN}\u@$MY_IP:\W${NOCOLOR} $(prompt_git_branch)${CYAN}${BOLD}\$${NOCOLOR} "
 }
-if [ "$TERM" != 'dumb' ]; then PROMPT_COMMAND="prompt; $PROMPT_COMMAND"; fi
+if [ "$TERM" != 'dumb' ]; then PROMPT_COMMAND="_set_ps1; $PROMPT_COMMAND"; fi

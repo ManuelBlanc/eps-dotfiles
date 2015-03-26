@@ -39,13 +39,16 @@ cd "$PREFIX"
 infoB "Buscando una instalacion ya existente ..."
 
 if [ -d "$PREFIX/eps-dotfiles" ]; then
-	info "Encontrada en $PREFIX/eps-dotfiles"
+	info "Encontrada en $PREFIX/eps-dotfiles, actualizando ..."
+	cd "$PREFIX/eps-dotfiles"
+	git pull --ff-only -v origin master
 else
 	info "No se encontro ninguna instalacion"
 	prompt "Desea instalar en $PREFIX/eps-dotfiles ($GITREPO)?" || abort "instalacion abortada"
 
 	infoB "Clonando el repositorio"
 	git clone -v "$GITREPO" "$PREFIX/eps-dotfiles"
+	cd "$PREFIX/eps-dotfiles"
 fi
 
 infoB "Enlazando los ficheros de configuracion"

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Desactivar '!'
-set +H
-
 # En ingles
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
@@ -10,6 +7,11 @@ export LC_ALL=en_US.utf8
 # Configuracion miscelanea
 export EDITOR=vim
 export LESS=-Ri
+
+# Historia
+set -o history
+set -o histexpand
+export HISTCONTROL=ignoreboth
 
 # Incluye las cosas que esten en la UnidadH/
 UnidadH="$HOME/UnidadH"
@@ -33,11 +35,11 @@ unset -f command_not_found_handle
 
 # Listados
 export LS_COLORS='*~=37:di=34:fi=0:ln=32:pi=5:so=33:bd=33:cd=33:or=92:mi=92:ex=31'
-alias l='ls -Fh --color'
-alias ll='l -la'
+alias l='ls -F --color'
+alias ll='l -Ghal'
 
 # Prompt mas interesante
-source .bash_prompt
+source ~/.bash_prompt
 
 # Navegacion
 alias back='cd "$OLDPWD"'
@@ -49,6 +51,19 @@ cd() {
         return $?
     fi
     command cd "$@"
+}
+
+# Ayuda
+man() {
+    local LAST_CMD="!:0"
+    if [ $# -eq 0 ]; then
+        command man "$LAST_CMD"
+        exit
+    fi
+    command man "$@"
+}
+maf() {
+    man "$1" | less -p "^ +$2"
 }
 
 # Otros alias y funciones utiles
@@ -82,7 +97,7 @@ extract () {
                 *)          echo "don't know how to extract '$1'..."    ;;
         esac
     else
-        echo "'$1' is not a valid file!"
+        echo "'$1' is not a valid file."
     fi
 }
 

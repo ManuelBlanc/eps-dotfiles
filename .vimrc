@@ -13,7 +13,7 @@ set nomodeline
 "===========
 set t_Co=256
 set background=dark
-"colorscheme jellybeans
+colorscheme peachpuff
 set encoding=utf-8
 
 set autoindent         " Indentacion automatica (misma altura)
