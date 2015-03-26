@@ -9,8 +9,6 @@ export EDITOR=vim
 export LESS=-Ri
 
 # Historia
-set -o history
-set -o histexpand
 export HISTCONTROL=ignoreboth
 
 # Incluye las cosas que esten en la UnidadH/
@@ -54,14 +52,10 @@ cd() {
 }
 
 # Ayuda
-man() {
-    local LAST_CMD="!:0"
-    if [ $# -eq 0 ]; then
-        command man "$LAST_CMD"
-        exit
-    fi
-    command man "$@"
+help() {
+    builtin help "$@" | less
 }
+alias lman='command man $(history -p !!:0)'
 maf() {
     man "$1" | less -p "^ +$2"
 }
