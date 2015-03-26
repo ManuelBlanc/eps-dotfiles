@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -eu # Modo sano
+
+{ # Proteccion ejecuccion parcial
 
 # Colorines
 NORMAL=$(tput sgr0)
@@ -92,5 +93,8 @@ gconftool-2 --set '/apps/gnome-terminal/profiles/Default/foreground_color'      
 ## Recargamos la configuracion
 infoB "Recargando la configuracion"
 set +eu
+cd ~
 bind -f ~/.inputrc
 . ~/.bashrc
+
+}
