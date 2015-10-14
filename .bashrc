@@ -102,6 +102,11 @@ swap() {
     mv $TMPFILE "$2"
 }
 
+## Despues de todo lo mio, cargamos los ficheros extra
+for f in "UnidadH/*.sh"; do
+    source "$f"
+done
+
 echo "$(tput setaf 4) ▄▄▄ . ▄▄▄·.▄▄ ·   $(tput setaf 4) ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
 echo "$(tput setaf 4) ▀▄.▀·▐█ ▄█▐█ ▀.   $(tput setaf 4) ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
 echo "$(tput setaf 4) ▐▀▀▪▄ ██▀·▄▀▀▀█▄  $(tput setaf 4) ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"

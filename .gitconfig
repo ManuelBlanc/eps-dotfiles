@@ -22,6 +22,8 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	last = log -1 --pretty=fuller --stat
 	# Rest
+	aa = add .
+	aaa = add -A .
 	br = branch -vv
 	bra = branch -vva
 	ci = commit
@@ -29,16 +31,18 @@
 	co = checkout
 	cob = checkout -b
 	df = diff
+	dfc = diff --cached
 	put = push --follow-tags
 	re = remote -v
 	rb = rebase -i
 	st = status -sb
 	# Util
 	lsu = ls-files --others --exclude-standard
-	check = diff --check
+	ii = ls-files --stage -t --full-name --abbrev=7
 	type = cat-file -t
 	dump = cat-file -p
 	#incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
 	#outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
 [credential]
-	helper = cache --timeout=3600
+	# Guarda los credenciales de github/bitbucket 2hr (duracion practicas)
+	helper = cache --timeout=7200
