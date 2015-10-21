@@ -76,7 +76,7 @@ link_file .vimrc
 
 ## Terminal negra
 infoB "Cambiando el perfil de la terminal"
-bash "$HOME/UnidadH/eps-dotfiles/term-colors.sh"
+bash "$HOME/UnidadH/eps-dotfiles/term-config.sh"
 
 infoB "Cargando ficheros adicionales"
 
