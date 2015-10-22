@@ -27,6 +27,7 @@
 	br = branch -vv
 	bra = branch -vva
 	ci = commit
+	cim = commit -m
 	cp = cherry-pick
 	co = checkout
 	cob = checkout -b

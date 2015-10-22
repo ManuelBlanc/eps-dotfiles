@@ -1,4 +1,1 @@
-#!/usr/bin/env bash
-
-URL='https://gist.githubusercontent.com/ManuelBlanc/9185599/raw/InstallSublime.sh'
-source <(curl -fsSL $URL)
+../submodules/InstallSublime/InstallSublime.sh

@@ -14,11 +14,11 @@ CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 
 # Utilidades
-echo2() { >&2 echo "$@";                                            	}
-info()  { echo2 "$GREEN==> $NORMAL$@$NORMAL";                       	}
-infoB() { echo2 "$GREEN==> $NORMAL$BOLD$@$NORMAL";                  	}
-error() { echo2 "$MAGENTA==> $NORMAL${BOLD}error: $NORMAL$@$NORMAL";	}
-abort() { error "$@"; exit 1;                                       	}
+echo2() { >&2 echo "$@";                                        	}
+info()  { echo2 "$GREEN==> $NORMAL$@$NORMAL";                   	}
+infoB() { echo2 "$GREEN==> $NORMAL$BOLD$@$NORMAL";              	}
+error() { echo2 "$RED==> $NORMAL${BOLD}error: $NORMAL$@$NORMAL";	}
+abort() { error "$@"; exit 1;                                   	}
 prompt() {
 	read -p "${YELLOW}$1 ${BOLD}[S/n]${NORMAL} " # -n 1 -r
 	[[ -z $REPLY || $REPLY =~ ^[YySs]$ ]]
@@ -43,12 +43,13 @@ if [ -d "$PREFIX/eps-dotfiles" ]; then
 	info "Encontrada en $PREFIX/eps-dotfiles, actualizando ..."
 	cd "$PREFIX/eps-dotfiles"
 	git pull --ff-only -v origin master
+	git submodule update
 else
 	info "No se encontro ninguna instalacion"
 	prompt "Desea instalar en $PREFIX/eps-dotfiles ($GITREPO)?" || abort "instalacion abortada"
 
 	infoB "Clonando el repositorio"
-	git clone -v "$GITREPO" "$PREFIX/eps-dotfiles"
+	git clone --recursive -v "$GITREPO" "$PREFIX/eps-dotfiles"
 	cd "$PREFIX/eps-dotfiles"
 fi
 
@@ -84,7 +85,16 @@ infoB "Cargando ficheros adicionales"
 infoB "Recargando la configuracion"
 set +eu
 cd ~
-bind -f ~/.inputrc
-. ~/.bashrc
 
+# Comprobamos como se esta ejecutando el script
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+	# Source
+	bind -f ~/.inputrc
+else
+	# Subshell
+	error "Debes abrir una terminal nueva para que se apliquen los cambios en el .inputrc"
+
+fi
+
+~/.bashrc
 }

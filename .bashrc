@@ -103,7 +103,7 @@ swap() {
 }
 
 ## Despues de todo lo mio, cargamos los ficheros extra
-for f in "UnidadH/*.sh"; do
+for f in $(shopt -s nullglob; echo $UnidadH/eps-dotfiles/extra/*.sh); do
     source "$f"
 done
 
