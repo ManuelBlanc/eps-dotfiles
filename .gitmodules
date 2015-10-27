@@ -1,3 +1,4 @@
 [submodule "InstallSublime"]
 	path = submodules/InstallSublime
 	url = https://gist.github.com/9185599.git
+	branch = master
