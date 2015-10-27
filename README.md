@@ -24,7 +24,7 @@ Si no te gusta pipear `curl` a `bash`, clona el repositorio y ejecuta el fichero
 ### Reconfiguracion
 Si ya lo tienes instalado, para cargar la configuracion en un ordenador nuevo solo tienes que ejecutar `bootstrap.sh` haciendo doble click o con el comando:
 
-    source ~/UnidadH/eps-dotfiles/setup.sh
+    source ~/UnidadH/eps-dotfiles/bootstrap.sh
 
 ## Caracteristicas
 * [subl](./bin/subl) arranca ST3 de la UnidadH, o lo instala si no esta en ese lugar.

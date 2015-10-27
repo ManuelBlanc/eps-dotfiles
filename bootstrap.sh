@@ -51,6 +51,10 @@ else
 	infoB "Clonando el repositorio"
 	git clone --recursive -v "$GITREPO" "$PREFIX/eps-dotfiles"
 	cd "$PREFIX/eps-dotfiles"
+	mkdir -p extra/
+	cp git-user.sh extra/
+	info '!!ATENCION!! Si eres un usuario de git, NO ejecutes "git config user..."'
+	info 'En vez de eso, modifica el fichero eps-dotfile/extra/git-user.sh'
 fi
 
 infoB "Enlazando los ficheros de configuracion"
@@ -84,17 +88,14 @@ infoB "Cargando ficheros adicionales"
 ## Recargamos la configuracion
 infoB "Recargando la configuracion"
 set +eu
-cd ~
 
 # Comprobamos como se esta ejecutando el script
-if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
-	# Source
-	bind -f ~/.inputrc
-else
-	# Subshell
-	error "Debes abrir una terminal nueva para que se apliquen los cambios en el .inputrc"
-
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	error "Debes abrir una terminal nueva para que se apliquen algunos cambios"
 fi
 
-~/.bashrc
+# Source
+bind -f ~/.inputrc
+source ~/.bashrc
+
 }
