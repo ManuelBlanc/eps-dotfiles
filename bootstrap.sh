@@ -59,7 +59,7 @@ fi
 
 infoB "Enlazando los ficheros de configuracion"
 ## Enlazado manual
-link_file() { ln -fs "$PREFIX/eps-dotfiles/$1" "$HOME/$1"; }
+link_file() { ln -fsT "$PREFIX/eps-dotfiles/$1" "$HOME/$1"; }
 # Git
 mkdir -p ~/.config/git
 link_file .config/git/ignore
@@ -71,6 +71,10 @@ link_file .inputrc
 # Vim
 link_file .vimrc
 
+# Cargamos nuestros datos de la configuracion de la terminal
+gconftool-2 --load="$PREFIX/eps-dotfiles/gnome-terminal.xml"
+# En el .bashrc creamos una funcion para guardar la configuracion actual
+
 ## TODO: Vale la pena automatizar esto?
 
 # for f in $(find "$EPSPREFIX" -type f ! -name README.md ! -path './.git/?*'); do
@@ -78,23 +82,13 @@ link_file .vimrc
 #	ln -s "$EPSPREFIX$(basename "$f")" $(dirname "$f")
 # done
 
-
-## Terminal negra
-infoB "Cambiando el perfil de la terminal"
-bash "$HOME/UnidadH/eps-dotfiles/term-config.sh"
-
-infoB "Cargando ficheros adicionales"
-
-## Recargamos la configuracion
 infoB "Recargando la configuracion"
-set +eu
 
 # Comprobamos como se esta ejecutando el script
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 	error "Debes abrir una terminal nueva para que se apliquen algunos cambios"
 fi
 
-# Source
 bind -f ~/.inputrc
 source ~/.bashrc
 

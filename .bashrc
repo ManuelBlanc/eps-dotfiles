@@ -102,17 +102,33 @@ swap() {
     mv $TMPFILE "$2"
 }
 
+# Funcion para guardar la configuracion de la terminal
+eps-save-term() {
+    gconftool-2 --dump '/app/gnome-terminal' > "$UnidadH/gnome-terminal.xml"
+}
+
+
 ## Despues de todo lo mio, cargamos los ficheros extra
 for f in $(shopt -s nullglob; echo $UnidadH/eps-dotfiles/extra/*.sh); do
     source "$f"
 done
 
-echo "$(tput setaf 4) ▄▄▄ . ▄▄▄·.▄▄ ·   $(tput setaf 4) ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
-echo "$(tput setaf 4) ▀▄.▀·▐█ ▄█▐█ ▀.   $(tput setaf 4) ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
-echo "$(tput setaf 4) ▐▀▀▪▄ ██▀·▄▀▀▀█▄  $(tput setaf 4) ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
-echo "$(tput setaf 4) ▐█▄▄▌▐█▪·•▐█▄▪▐█  $(tput setaf 4) ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
-echo "$(tput setaf 4)  ▀▀▀ .▀    ▀▀▀▀   $(tput setaf 4) ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
+eps-cabecera() {
+# Podria ser aleatorio, pero naranja + azul queda magico :-)
+local estilo1=$(tput setaf 4)
+local estilo2=$(tput setaf 6)
+_cabecera_print() {
+	sed 's/\([.·•▪]\)/'$estilo2'\1'$estilo1'/g' <<<"$estilo1$1"
+}
+_cabecera_print "▄▄▄ . ▄▄▄·.▄▄ ·    ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
+_cabecera_print "▀▄.▀·▐█ ▄█▐█ ▀.    ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
+_cabecera_print "▐▀▀▪▄ ██▀·▄▀▀▀█▄   ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
+_cabecera_print "▐█▄▄▌▐█▪·•▐█▄▪▐█   ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
+_cabecera_print " ▀▀▀ .▀    ▀▀▀▀    ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
 tput sgr0
 echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
 echo ''
+unset  -f _cabecera_print
+}
 
+eps-cabecera

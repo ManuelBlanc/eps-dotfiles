@@ -1,5 +1,5 @@
 ##
-## git-user.sh -- Descomenta las siguientes lineas y copialo a custom/
+## git-user.sh -- Descomenta las siguientes lineas y copialo a eps-dotfiles/extra/ (creala si no existe)
 ##
 
 #export GIT_AUTHOR_NAME="John Smith"
