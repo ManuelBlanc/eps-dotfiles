@@ -696,7 +696,7 @@
     <entry>
       <key>profiles/Profile0/scrollback_unlimited</key>
       <value>
-        <bool>false</bool>
+        <bool>true</bool>
       </value>
     </entry>
     <entry>
@@ -714,13 +714,13 @@
     <entry>
       <key>profiles/Profile0/title</key>
       <value>
-        <string>Terminal</string>
+        <string>Term</string>
       </value>
     </entry>
     <entry>
       <key>profiles/Profile0/title_mode</key>
       <value>
-        <string>replace</string>
+        <string>after</string>
       </value>
     </entry>
     <entry>

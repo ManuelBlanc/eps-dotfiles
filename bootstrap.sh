@@ -75,21 +75,12 @@ link_file .vimrc
 gconftool-2 --load="$PREFIX/eps-dotfiles/gnome-terminal.xml"
 # En el .bashrc creamos una funcion para guardar la configuracion actual
 
-## TODO: Vale la pena automatizar esto?
-
-# for f in $(find "$EPSPREFIX" -type f ! -name README.md ! -path './.git/?*'); do
-#	mkdir -p $(dirname "$f")
-#	ln -s "$EPSPREFIX$(basename "$f")" $(dirname "$f")
-# done
-
 infoB "Recargando la configuracion"
+bind -f ~/.inputrc
+source ~/.bashrc
 
 # Comprobamos como se esta ejecutando el script
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 	error "Debes abrir una terminal nueva para que se apliquen algunos cambios"
 fi
-
-bind -f ~/.inputrc
-source ~/.bashrc
-
 }
