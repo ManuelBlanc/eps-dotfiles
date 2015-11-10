@@ -35,26 +35,27 @@ PREFIX="$HOME/UnidadH"
 GITREPO="https://github.com/ManuelBlanc/eps-dotfiles.git"
 # Preparacion
 test -d "$PREFIX" || abort "La ~/UnidadH/ no esta disponible"
-cd "$PREFIX"
 
 infoB "Buscando una instalacion ya existente ..."
 
 if [ -d "$PREFIX/eps-dotfiles" ]; then
 	info "Encontrada en $PREFIX/eps-dotfiles, actualizando ..."
-	cd "$PREFIX/eps-dotfiles"
-	git pull --ff-only -v origin master
-	git submodule update
+	(cd "$PREFIX/eps-dotfiles" && git pull --ff-only -v origin master && git submodule update)
 else
 	info "No se encontro ninguna instalacion"
 	prompt "Desea instalar en $PREFIX/eps-dotfiles ($GITREPO)?" || abort "instalacion abortada"
 
 	infoB "Clonando el repositorio"
 	git clone --recursive -v "$GITREPO" "$PREFIX/eps-dotfiles"
-	cd "$PREFIX/eps-dotfiles"
-	mkdir -p extra/
-	cp git-user.sh extra/
 	info '!!ATENCION!! Si eres un usuario de git, NO ejecutes "git config user..."'
-	info 'En vez de eso, modifica el fichero eps-dotfile/extra/git-user.sh'
+	info 'En vez de eso, modifica el fichero eps-dotfiles/IDENTIDAD_GIT'
+
+cat > "$PREFIX/eps-dotfiles/IDENTIDAD_GIT" <<EOF
+[user]
+	name = Nombre
+	email = email@example.com
+EOF
+
 fi
 
 infoB "Enlazando los ficheros de configuracion"
@@ -72,7 +73,11 @@ link_file .inputrc
 link_file .vimrc
 
 # Cargamos nuestros datos de la configuracion de la terminal
-gconftool-2 --load="$PREFIX/eps-dotfiles/gnome-terminal.xml"
+if [ -f "$PREFIX/eps-dotfiles/gnome-terminal.custom.xml" ]; then
+	gconftool-2 --load="$PREFIX/eps-dotfiles/gnome-terminal.custom.xml"
+else
+	gconftool-2 --load="$PREFIX/eps-dotfiles/gnome-terminal.xml"
+fi
 # En el .bashrc creamos una funcion para guardar la configuracion actual
 
 infoB "Recargando la configuracion"

@@ -1,0 +1,16 @@
+eps-cabecera() {
+local estilo1=$(tput setaf $1)
+local estilo2=$(tput setaf $2)
+_cabecera_print() {
+	sed 's/\([.·•▪]\)/'$estilo2'\1'$estilo1'/g' <<<"$estilo1$1"
+}
+_cabecera_print "▄▄▄ . ▄▄▄·.▄▄ ·    ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
+_cabecera_print "▀▄.▀·▐█ ▄█▐█ ▀.    ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
+_cabecera_print "▐▀▀▪▄ ██▀·▄▀▀▀█▄   ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
+_cabecera_print "▐█▄▄▌▐█▪·•▐█▄▪▐█   ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
+_cabecera_print " ▀▀▀ .▀    ▀▀▀▀    ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
+tput sgr0
+echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
+echo ''
+unset  -f _cabecera_print
+}

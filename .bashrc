@@ -104,7 +104,7 @@ swap() {
 
 # Funcion para guardar la configuracion de la terminal
 eps-save-term() {
-    gconftool-2 --dump '/app/gnome-terminal' > "$UnidadH/gnome-terminal.xml"
+    gconftool-2 --dump '/app/gnome-terminal' > "$UnidadH/eps-dotfiles/gnome-terminal.custom.xml"
 }
 
 
@@ -112,22 +112,5 @@ eps-save-term() {
 for f in $(shopt -s nullglob; echo $UnidadH/eps-dotfiles/extra/*.sh); do
     source "$f"
 done
-
-eps-cabecera() {
-local estilo1=$(tput setaf $1)
-local estilo2=$(tput setaf $2)
-_cabecera_print() {
-	sed 's/\([.·•▪]\)/'$estilo2'\1'$estilo1'/g' <<<"$estilo1$1"
-}
-_cabecera_print "▄▄▄ . ▄▄▄·.▄▄ ·    ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
-_cabecera_print "▀▄.▀·▐█ ▄█▐█ ▀.    ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
-_cabecera_print "▐▀▀▪▄ ██▀·▄▀▀▀█▄   ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
-_cabecera_print "▐█▄▄▌▐█▪·•▐█▄▪▐█   ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
-_cabecera_print " ▀▀▀ .▀    ▀▀▀▀    ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
-tput sgr0
-echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
-echo ''
-unset  -f _cabecera_print
-}
 
 eps-cabecera 7 $(( $RANDOM % 3 + 1 ))

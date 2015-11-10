@@ -1,6 +1,7 @@
+[include]
+	path = ~/UnidadH/eps-dotfiles/IDENTIDAD_GIT
 [core]
 	editor = "vim" # subl -w
-	excludesfile = $HOME/.config/git/ignore
 [color]
 	ui = true
 	diff = auto
