@@ -64,6 +64,8 @@ maf() {
 alias mkdirp='mkdir -p'
 alias bc='bc -l'
 
+alias g='git'
+
 alias duh='du -h'
 alias duhd='du -hd1'
 
