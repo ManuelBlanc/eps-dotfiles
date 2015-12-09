@@ -69,6 +69,8 @@ alias g='git'
 alias duh='du -h'
 alias duhd='du -hd1'
 
+alias open='gnome-open'
+
 ff() {
     local DIR="$1"
     shift
