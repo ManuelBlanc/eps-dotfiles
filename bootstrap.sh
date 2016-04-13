@@ -3,24 +3,23 @@
 { # Proteccion ejecuccion parcial
 
 # Colorines
-NORMAL=$(tput sgr0)
-BOLD=$(tput bold)
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
-MAGENTA=$(tput setaf 5)
-CYAN=$(tput setaf 6)
-WHITE=$(tput setaf 7)
+C_NORMAL=$(tput sgr0)
+C_BOLD=$(tput bold)
+C_RED=$(tput setaf 1)
+C_GREEN=$(tput setaf 2)
+C_YELLOW=$(tput setaf 3)
+C_BLUE=$(tput setaf 4)
+C_MAGENTA=$(tput setaf 5)
+C_CYAN=$(tput setaf 6)
+C_WHITE=$(tput setaf 7)
 
 # Utilidades
-echo2() { >&2 echo "$@";                                        	}
-info()  { echo2 "$GREEN==> $NORMAL$@$NORMAL";                   	}
-infoB() { echo2 "$GREEN==> $NORMAL$BOLD$@$NORMAL";              	}
-error() { echo2 "$RED==> $NORMAL${BOLD}error: $NORMAL$@$NORMAL";	}
+info()  { echo "$C_GREEN==> $C_NORMAL$@$C_NORMAL";              	}
+infoB() { echo "$C_GREEN==> $C_NORMAL$C_BOLDC_$@$NORMAL";       	}
+error() { echo "$C_RED==> $C_NORMAL${C_BOLD}error: $C_NORMAL$@";	}
 abort() { error "$@"; exit 1;                                   	}
 prompt() {
-	read -p "${YELLOW}$1 ${BOLD}[S/n]${NORMAL} " # -n 1 -r
+	read -p "${C_YELLOW}$1 ${C_BOLD}[S/n]${C_NORMAL} " # -n 1 -r
 	[[ -z $REPLY || $REPLY =~ ^[YySs]$ ]]
 	return $?
 }

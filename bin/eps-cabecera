@@ -6,11 +6,13 @@ _cabecera_print() {
 	sed 's/\([.·•▪]\)/'$estilo2'\1'$estilo1'/g' <<<"$estilo1$1"
 }
 
+echo -en '\r'
 _cabecera_print "▄▄▄ . ▄▄▄·.▄▄ ·    ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
 _cabecera_print "▀▄.▀·▐█ ▄█▐█ ▀.    ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
 _cabecera_print "▐▀▀▪▄ ██▀·▄▀▀▀█▄   ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
 _cabecera_print "▐█▄▄▌▐█▪·•▐█▄▪▐█   ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
 _cabecera_print " ▀▀▀ .▀    ▀▀▀▀    ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
+echo -n "$estilo2"; uptime
 tput sgr0
-echo '        ((https://github.com/ManuelBlanc/eps-dotfiles))'
+echo '    ((https://github.com/ManuelBlanc/eps-dotfiles))'
 echo ''
