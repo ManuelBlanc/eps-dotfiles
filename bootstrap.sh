@@ -49,11 +49,11 @@ else
 	info '!!ATENCION!! Si eres un usuario de git, NO ejecutes "git config user..."'
 	info 'En vez de eso, modifica el fichero eps-dotfiles/IDENTIDAD_GIT'
 
-cat > "$PREFIX/eps-dotfiles/IDENTIDAD_GIT" <<EOF
-[user]
-	name = Nombre
-	email = email@example.com
-EOF
+	cat > "$PREFIX/eps-dotfiles/IDENTIDAD_GIT" <<-EOF
+	[user]
+		name = Nombre
+		email = email@example.com
+	EOF
 
 fi
 
