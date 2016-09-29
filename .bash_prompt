@@ -16,7 +16,7 @@ source "$(dirname $(test -L "$BASH_SOURCE" && readlink "$BASH_SOURCE" || echo "$
 # Source:: https://github.com/jondavidjohn/dotfiles/
 prompt_git_branch() {
 
-	branch=`__git_ps1 "%s"`
+	local branch=`__git_ps1 "%s"`
 
 	if [ `tput cols` -lt 110 ]; then
 		case $branch in

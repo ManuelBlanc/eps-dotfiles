@@ -1,12 +1,8 @@
 [include]
-	path = ~/UnidadH/eps-dotfiles/IDENTIDAD_GIT
-[merge]
-	tool = subl
-[mergetool "subl"]
-	cmd = subl -w "$MERGED"
-	trustExitCode = false
+    path = UnidadH/eps-dotfiles/extra/git-user
 [core]
-	editor = subl -w
+	editor = "vim" # subl -w
+	excludesfile = $HOME/.config/git/ignore
 [color]
 	ui = true
 	diff = auto
@@ -42,7 +38,6 @@
 	put = push --follow-tags
 	re = remote -v
 	rb = rebase -i
-	rmc = rm --cached
 	st = status -sb
 	# Util
 	lsu = ls-files --others --exclude-standard

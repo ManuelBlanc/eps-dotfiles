@@ -11,6 +11,9 @@ export LESS=-Ri
 # Historia
 export HISTCONTROL=ignoreboth
 
+# Del propio bash
+shopt -s extglob
+
 # Incluye las cosas que esten en la UnidadH/
 UnidadH="$HOME/UnidadH"
 export PATH="$UnidadH/bin:$UnidadH/eps-dotfiles/bin:$PATH"
@@ -64,12 +67,8 @@ maf() {
 alias mkdirp='mkdir -p'
 alias bc='bc -l'
 
-alias g='git'
-
 alias duh='du -h'
 alias duhd='du -hd1'
-
-alias open='gnome-open'
 
 ff() {
     local DIR="$1"
@@ -108,7 +107,7 @@ swap() {
 
 # Funcion para guardar la configuracion de la terminal
 eps-save-term() {
-    gconftool-2 --dump '/app/gnome-terminal' > "$UnidadH/eps-dotfiles/gnome-terminal.custom.xml"
+    gconftool-2 --dump '/app/gnome-terminal' > "$UnidadH/gnome-terminal.xml"
 }
 
 
@@ -117,4 +116,4 @@ for f in $(shopt -s nullglob; echo $UnidadH/eps-dotfiles/extra/*.sh); do
     source "$f"
 done
 
-eps-cabecera 7 $(( $RANDOM % 3 + 1 ))
+eps-cabecera

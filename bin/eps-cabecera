@@ -1,18 +1,32 @@
+#!/usr/bin/env bash
 
-estilo1=$(tput setaf $1)
-estilo2=$(tput setaf $2)
+
+while getopts 'p:s:hs' opt; do
+	case "${opt}" in
+		1) color1="$OPTARG"                	;;
+		2) color2="$OPTARG"                	;;
+		m) mensaje="$OPTARG"               	;;
+		h) help                            	;;
+		s) exit 0                          	;;
+		*) error "Unexpected option ${opt}"	;;
+	esac
+done
+
+estilo1=$(tput setaf ${color1-7})
+estilo2=$(tput setaf ${color2-$(( $RANDOM % 6 + 1 ))})
+mensaje="${mensaje:-	((https://github.com/ManuelBlanc/eps-dotfiles))}"
 
 _cabecera_print() {
 	sed 's/\([.·•▪]\)/'$estilo2'\1'$estilo1'/g' <<<"$estilo1$1"
 }
 
-echo -en '\r'
 _cabecera_print "▄▄▄ . ▄▄▄·.▄▄ ·    ·▄▄▄▄        ▄▄▄▄▄·▄▄▄▪  ▄▄▌  ▄▄▄ ..▄▄ · "
 _cabecera_print "▀▄.▀·▐█ ▄█▐█ ▀.    ██▪ ██ ▪     •██  ▐▄▄·██ ██•  ▀▄.▀·▐█ ▀. "
 _cabecera_print "▐▀▀▪▄ ██▀·▄▀▀▀█▄   ▐█· ▐█▌ ▄█▀▄  ▐█.▪██▪ ▐█·██▪  ▐▀▀▪▄▄▀▀▀█▄"
 _cabecera_print "▐█▄▄▌▐█▪·•▐█▄▪▐█   ██. ██ ▐█▌.▐▌ ▐█▌·██▌.▐█▌▐█▌▐▌▐█▄▄▌▐█▄▪▐█"
 _cabecera_print " ▀▀▀ .▀    ▀▀▀▀    ▀▀▀▀▀•  ▀█▄▀▪ ▀▀▀ ▀▀▀ ▀▀▀.▀▀▀  ▀▀▀  ▀▀▀▀ "
-echo -n "$estilo2"; uptime
+
 tput sgr0
-echo '    ((https://github.com/ManuelBlanc/eps-dotfiles))'
-echo ''
+
+[ -n "$mensaje" ] && echo "$mensaje"
+
